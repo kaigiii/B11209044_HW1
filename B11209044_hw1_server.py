@@ -15,9 +15,34 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 # 允許重複使用本地位址（在 server 非正常關閉後可快速重啟）
 serverSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 
-# 將 Socket 綁定(bind)到指定埠號
-# ' ' 空字串表示伺服器會監聽所有本機可用的 IPv4 位址
-serverSocket.bind(('127.0.0.1', serverPort))
+# 嘗試綁定到 serverPort，若被佔用則往上找下一個可用的 port
+max_tries = 50
+tries = 0
+bound = False
+while tries < max_tries and not bound:
+    try:
+        serverSocket.bind(('127.0.0.1', serverPort))
+        bound = True
+    except OSError as e:
+        # Address already in use -> 改用下一個 port
+        from errno import EADDRINUSE
+        if getattr(e, 'errno', None) == EADDRINUSE or 'Address already in use' in str(e):
+            print(f"Port {serverPort} in use, trying {serverPort+1}...")
+            serverPort += 1
+            tries += 1
+        else:
+            raise
+
+if not bound:
+    raise RuntimeError(f"Failed to bind server socket after {max_tries} attempts")
+
+# 將實際綁定的 port 寫入檔案，供 client 或其他工具讀取
+try:
+    with open('server_port.txt', 'w') as f:
+        f.write(str(serverPort))
+except Exception:
+    # 寫檔失敗不影響 server 運作
+    pass
 
 # 開始監聽(listen)連線請求
 # 參數 1 表示系統在拒絕新連線前，最多允許 1 個連線在佇列中等待

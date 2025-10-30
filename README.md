@@ -1,6 +1,6 @@
 # HW1 — 快速啟動（簡潔）
 
-以下為最短且明確的啟動指引，依作業系統分為 GUI（雙擊）和終端備用指令。
+以下為啟動指引，依作業系統分為 GUI（雙擊）和終端備用指令。
 
 macOS
 - GUI：在專案資料夾雙擊 `run_hw1.command`（會開兩個 Terminal 視窗，分別執行 `macOS_dist/HW1_server` 與 `macOS_dist/HW1_client`）。
@@ -22,7 +22,7 @@ windows_dist\HW1_server.exe
 windows_dist\HW1_client.exe
 ```
 
-- 終端備用（無 .exe，使用 Python）：
+- 終端備用（使用 Python）：
 
 ```powershell
 python B11209044_hw1_server.py    # 在一個視窗
@@ -43,8 +43,3 @@ Input lowercase sentence:
 ```
 
 - 在 client 輸入任意句子後按 Enter，client 會顯示 server 傳回的大寫字串。
-
-注意（簡短）
-- macOS Gatekeeper 或 Windows SmartScreen 可能對未簽名的執行檔顯示警告；若發生，請使用右鍵 → 開啟或到系統安全設定允許執行。
-
-(完)

@@ -11,6 +11,17 @@ serverName = 'localhost'
 
 # 設定 Server 的埠號 (必須與 Server 程式中設定的
 serverPort = 12000
+# 若 server 寫入了 server_port.txt，優先使用該 port（方便 server 自動選 port 的情況）
+try:
+	with open('server_port.txt', 'r') as f:
+		data = f.read().strip()
+		if data:
+			serverPort = int(data)
+except FileNotFoundError:
+	pass
+except Exception:
+	# 若讀取或解析失敗，保留預設 port
+	pass
 
 # 建立 Client 的 TCP Socket
 clientSocket = socket(AF_INET, SOCK_STREAM)
