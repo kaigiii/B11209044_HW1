@@ -1,0 +1,39 @@
+name: Build Windows EXE
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+
+      - name: Build server and client (onefile)
+        run: |
+          python -m PyInstaller --onefile B11209044_hw1_server.py --name HW1_server.exe --distpath dist --workpath build --specpath build
+          python -m PyInstaller --onefile B11209044_hw1_client.py --name HW1_client.exe --distpath dist --workpath build --specpath build
+
+      - name: Zip dist
+        shell: pwsh
+        run: |
+          if (Test-Path dist) { Compress-Archive -Path (Join-Path -Path (Get-Location) -ChildPath 'dist\*') -DestinationPath dist-windows.zip -Force } else { Write-Error 'dist not found' }
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-windows
+          path: dist-windows.zip
