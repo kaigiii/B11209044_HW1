@@ -3,22 +3,22 @@
 以下列出每個作業系統的快速啟動（GUI）方法、備用的終端機指令，以及預期成果。
 
 macOS
-- GUI（推薦）：雙擊 `run_hw1.command`（會開兩個 Terminal 視窗，分別執行 server 與 client）。
+- GUI（推薦）：雙擊 `run_hw1.command`（會開兩個 Terminal 視窗，分別執行 `macOS_dist/HW1_server` 與 `macOS_dist/HW1_client`）。
 - 備用（終端機）：
 
 ```bash
-./dist/HW1_server    # 啟 server
-./dist/HW1_client    # 啟 client
+./macOS_dist/HW1_server    # 啟 server
+./macOS_dist/HW1_client    # 啟 client
 ```
 
 Windows
-- GUI（若已建置 `.exe`）：雙擊 `run_hw1.bat`（會開兩個 cmd 視窗，執行 `dist\\HW1_server.exe` 與 `dist\\HW1_client.exe`）。
+- GUI（若已建置 `.exe`）：雙擊 `run_hw1.bat`（會開兩個 cmd 視窗，執行 `windows_dist\\HW1_server.exe` 與 `windows_dist\\HW1_client.exe`）。
 - 備用（命令提示字元 / PowerShell）：
 
 如果有 `.exe`：
 ```powershell
-dist\\HW1_server.exe
-dist\\HW1_client.exe
+windows_dist\\HW1_server.exe
+windows_dist\\HW1_client.exe
 ```
 
 如果使用 Python（未建置 `.exe`）：
