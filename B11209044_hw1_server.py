@@ -12,6 +12,8 @@ serverPort = 12000
 # AF_INET 表示使用 IPv4
 # SOCK_STREAM 表示使用 TCP
 serverSocket = socket(AF_INET, SOCK_STREAM)
+# 允許重複使用本地位址（在 server 非正常關閉後可快速重啟）
+serverSocket.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
 
 # 將 Socket 綁定(bind)到指定埠號
 # ' ' 空字串表示伺服器會監聽所有本機可用的 IPv4 位址

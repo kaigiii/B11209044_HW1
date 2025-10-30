@@ -6,8 +6,8 @@ DIR="$(cd "$(dirname "$0")" && pwd)"
 
 osascript <<EOF
 tell application "Terminal"
-    do script "cd '$DIR'; ./macOS_dist/HW1_server"
-    do script "cd '$DIR'; ./macOS_dist/HW1_client"
+    do script "cd '$DIR'; ./macOS_dist/HW1_server; exec $SHELL"
+    do script "cd '$DIR'; ./macOS_dist/HW1_client; exec $SHELL"
     activate
 end tell
 EOF
