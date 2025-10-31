@@ -46,3 +46,11 @@ print('From Server:', modifiedSentence)
 
 # 關閉 Client Socket，結束連線
 clientSocket.close()
+
+# 等待使用者按任意鍵再結束（避免雙擊或啟動器視窗立刻關閉）
+# 在 Windows 或其他平台上執行時，這行會顯示提示並等待輸入
+try:
+	input('\n按任意鍵結束...')
+except Exception:
+	# 若執行環境不支援標準輸入（例如某些 GUI 直譯器），則靜默結束
+	pass
