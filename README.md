@@ -2,24 +2,18 @@
 
 以下為啟動指引，依作業系統分為 GUI（雙擊）和終端備用指令。
 
-macOS
-- GUI：在專案資料夾雙擊 `run_hw1.command`（會開兩個 Terminal 視窗，分別執行 `macOS_dist/HW1_server` 與 `macOS_dist/HW1_client`）。
-- 終端備用：
+macOS（雙擊執行檔）
 
-```bash
-cd /path/to/project
+```
 ./macOS_dist/HW1_server    # 啟 server（在一個視窗）
 ./macOS_dist/HW1_client    # 啟 client（另開一個視窗）
 ```
 
-Windows
-- GUI：雙擊 `run_hw1.bat`（會開兩個 cmd 視窗，執行 `windows_dist\HW1_server.exe` 與 `windows_dist\HW1_client.exe`）。
-- 終端備用（有 .exe）：
+Windows（雙擊執行檔）
 
-```powershell
-cd C:\path\to\project
-windows_dist\HW1_server.exe
-windows_dist\HW1_client.exe
+```
+windows_dist\HW1_server.exe    # 啟 server（在一個視窗）
+windows_dist\HW1_client.exe    # 啟 client（另開一個視窗）
 ```
 
 - 終端備用（使用 Python）：
